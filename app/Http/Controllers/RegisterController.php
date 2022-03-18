@@ -15,15 +15,15 @@ class RegisterController extends Controller
         return view('registration');
     }
     public function registration(Request $request){
-            // $validator = Validator::make($request->all(), [
-            //     'name' => 'required',
-            //     'email' => 'required|unique:users',
-            //     'phone' => 'required|numeric|min:11|unique:users'
-            // ]);
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => 'required|unique:users',
+                'phone' => 'required|numeric|min:11|unique:users'
+            ]);
 
-            // if ($validator->fails()) {
-            //     return redirect()->back()->withErrors($validator)->withInput();
-            // }
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
 
             $user = new User;
             $user->name = $request->name;
